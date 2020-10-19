@@ -91,11 +91,5 @@ namespace Demo_DB_UI
 
         private void addLabelBorderOnOver(object sender, EventArgs e) { ((Label)sender).BorderBrush = Brushes.Black; }
         private void clearLabelBorder(object sender, EventArgs e) { ((Label)sender).BorderBrush = Brushes.Transparent; }
-        
-        private void test()
-        {
-
-        }
     }
-    
 }
