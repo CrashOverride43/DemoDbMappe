@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DemoDBDataAccessLayer.DB;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,6 +7,6 @@ namespace DemoDBDataAccessLayer.Data
 {
     public interface IData
     {
-        List<T> SelectAll<T>();
+        List<T> SelectAll<T>(ISqlDbConnection dbConnection);
     }
 }

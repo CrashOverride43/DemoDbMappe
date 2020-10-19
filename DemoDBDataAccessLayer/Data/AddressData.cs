@@ -1,4 +1,5 @@
-﻿using DemoDBDataAccessLayer.Models;
+﻿using DemoDBDataAccessLayer.DB;
+using DemoDBDataAccessLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -21,10 +22,10 @@ namespace DemoDBDataAccessLayer.Data
         /// </summary>
         /// <returns>Gibt die Selektierten Adressen als Liste zurück.</returns>
 
-        public List<T> SelectAll<T>()
+        public List<T> SelectAll<T>(ISqlDbConnection dbConnection)
         {
             string query = "SELECT * FROM Address;";
-            return MySqlDbConnection.LoadData<T, dynamic>(query, new { }, _connectionStringName);
+            return dbConnection.LoadData<T, dynamic>(query, new { }, _connectionStringName);
         }
     }
 }

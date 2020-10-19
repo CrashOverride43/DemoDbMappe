@@ -70,13 +70,28 @@ namespace Demo_DB_UI
             switch (data)
             {
                 case "AddressData":
-                    insertInDataGrid(new AddressData());
+                    try{
+                        insertInDataGrid(new AddressData());
+                    }
+                    catch (Exception ex){
+                        MessageBox.Show(ex.Message);
+                    }
                     break;
                 case "PersonData":
-                    insertInDataGrid(new PersonData());
+                    try{
+                        insertInDataGrid(new PersonData());
+                    }
+                    catch (Exception ex){
+                        MessageBox.Show(ex.Message);
+                    }
                     break;
                 case "CompanyData":
-                    insertInDataGrid(new CompanyData());
+                    try{
+                        insertInDataGrid(new CompanyData());
+                    }
+                    catch (Exception ex){
+                        MessageBox.Show(ex.Message);
+                    }
                     break;
                 default:
                     break;
@@ -86,10 +101,31 @@ namespace Demo_DB_UI
 
         private void insertInDataGrid(IData data)
         {
-            dbData.ItemsSource = data.SelectAll<dynamic>();
+            dbData.ItemsSource = data.SelectAll<dynamic>(new MySqlDbConnection());
         }
 
         private void addLabelBorderOnOver(object sender, EventArgs e) { ((Label)sender).BorderBrush = Brushes.Black; }
         private void clearLabelBorder(object sender, EventArgs e) { ((Label)sender).BorderBrush = Brushes.Transparent; }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            createOwnQuery.Visibility = Visibility.Visible;
+        }
+
+        private void btnExecuteQuery(object sender, RoutedEventArgs e)
+        {
+            CreateDBData dBData = new CreateDBData();
+            try
+            {
+                MessageBox.Show(dBData.createDataBase(tbxQuery.Text, new MySqlDbConnection()).ToString());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
+            createOwnQuery.Visibility = Visibility.Hidden;
+        }
     }
+    
 }

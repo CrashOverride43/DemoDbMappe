@@ -29,5 +29,15 @@ namespace DemoDBDataAccessLayer.DB
                 return con.Execute(query, parameter);
             }
         }
+
+        public int InsertData<U>(string query, U parameter, string connectionStringName)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString;
+
+            using (MySqlConnection con = new MySqlConnection(connectionString))
+            {
+                return con.Execute(query, parameter);
+            }
+        }
     }
 }

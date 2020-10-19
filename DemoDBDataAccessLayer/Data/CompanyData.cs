@@ -10,10 +10,10 @@ namespace DemoDBDataAccessLayer.Data
     {
         public CompanyData(string connectionStringName = "MySql") : base(connectionStringName) { }
 
-        public List<T> SelectAll<T>()
+        public List<T> SelectAll<T>(ISqlDbConnection dbConnection)
         {
             string query = "SELECT * FROM Company;";
-            return MySqlDbConnection.LoadData<T, dynamic>(query, new { }, _connectionStringName);
+            return dbConnection.LoadData<T, dynamic>(query, new { }, _connectionStringName);
         }
     }
 }

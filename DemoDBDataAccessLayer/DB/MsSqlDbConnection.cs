@@ -48,5 +48,10 @@ namespace DemoDBDataAccessLayer.DB
                 return con.Execute(query, parameter);
             }
         }
+
+        public int InsertData<U>(string query, U parameters, string connectionStringName)
+        {
+            return 0;
+        }
     }
 }

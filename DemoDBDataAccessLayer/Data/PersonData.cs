@@ -21,10 +21,10 @@ namespace DemoDBDataAccessLayer.Data
             string query = "INSERT INTO Person (Firstname, Lastname, Email) VALUES (@Firstname, @Lastname, @Email);";
             return MySqlDbConnection.SaveData<dynamic>(query, people, _connectionStringName);
         }
-        public List<T> SelectAll<T>()
+        public List<T> SelectAll<T>(ISqlDbConnection dbConnection)
         {
             string query = "SELECT * FROM Person;";
-            return MySqlDbConnection.LoadData<T, dynamic>(query, new { }, _connectionStringName);
+            return dbConnection.LoadData<T, dynamic>(query, new { }, _connectionStringName);
         }
     }
 }
