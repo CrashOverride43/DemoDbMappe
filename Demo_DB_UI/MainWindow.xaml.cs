@@ -18,6 +18,7 @@ using System.Diagnostics.PerformanceData;
 using DemoDBDataAccessLayer.Models;
 using System.Collections.ObjectModel;
 using System.Reflection;
+using System.Diagnostics;
 
 namespace Demo_DB_UI
 {
@@ -26,6 +27,7 @@ namespace Demo_DB_UI
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<string> values = new List<string>();
         System.IO.DirectoryInfo ParentDirectory = new System.IO.DirectoryInfo(@"C:\Users\FIAE\Downloads\DemoDbMappe\DemoDBDataAccessLayer\Data\");
         public MainWindow()
         {
@@ -91,5 +93,51 @@ namespace Demo_DB_UI
 
         private void addLabelBorderOnOver(object sender, EventArgs e) { ((Label)sender).BorderBrush = Brushes.Black; }
         private void clearLabelBorder(object sender, EventArgs e) { ((Label)sender).BorderBrush = Brushes.Transparent; }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnAddLinks_Click(object sender, RoutedEventArgs e)
+        {
+            createLink win = new createLink();
+            
+
+            if (win.ShowDialog() != false)
+            {
+                values = win.getValues();
+            }
+            fillUrlInGrid();
+        }
+
+        private void fillUrlInGrid()
+        {
+            TextBlock linktxt = new TextBlock();
+            Hyperlink hlink = new Hyperlink();
+            hlink.Inlines.Add(values[0]);
+            hlink.NavigateUri = new Uri(values[1]);
+            hlink.RequestNavigate += new RequestNavigateEventHandler(HyperlinkRequest);
+
+            linktxt.Inlines.Add(hlink);
+            
+            linkSammlung.Children.Add(linktxt);
+        }
+
+        private void HyperlinkRequest(object sender, RequestNavigateEventArgs e)
+        {
+            var ps = new ProcessStartInfo(e.Uri.AbsoluteUri)
+            {
+                UseShellExecute = true,
+                Verb = "open"
+            };
+            Process.Start(ps);
+        }
+
+        private void showLinkSammlung(object sender, RoutedEventArgs e)
+        {
+            linkSammlung.Visibility = Visibility.Visible;
+            btnAddLinks.Visibility = Visibility.Visible;
+        }
     }
 }

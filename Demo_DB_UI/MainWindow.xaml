@@ -6,13 +6,23 @@
         xmlns:local="clr-namespace:Demo_DB_UI"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Button Content="Neu Anlegen" HorizontalAlignment="Left" Margin="10,366,0,0" VerticalAlignment="Top" Height="38" Width="85"/>
-        <Button x:Name="btnLoad" Content="Laden" HorizontalAlignment="Left" Margin="100,365,0,0" VerticalAlignment="Top" Height="39" Width="85" Click="Button_Click"/>
-        <Button Content="Herrunterladen" HorizontalAlignment="Left" Margin="190,365,0,0" VerticalAlignment="Top" Height="39" Width="85"/>
-        <StackPanel  Name="LoadData" Visibility="Hidden" HorizontalAlignment="Left">
+    <Grid x:Name="groundZero">
+        <Menu Margin="0,0,0,391" Name="Top" VerticalAlignment="Top">
+            <MenuItem Header="Linksammlung">
+                <MenuItem Header="klickmisch" Click="showLinkSammlung" >
+                    
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+        <Button Content="Neu Anlegen" HorizontalAlignment="Left" Margin="10,386,0,0" VerticalAlignment="Top" Height="38" Width="85"/>
+        <Button x:Name="btnLoad" Content="Laden" HorizontalAlignment="Left" Margin="100,385,0,0" VerticalAlignment="Top" Height="39" Width="85" Click="Button_Click"/>
+        <Button Content="Herrunterladen" HorizontalAlignment="Left" Margin="190,385,0,0" VerticalAlignment="Top" Height="39" Width="85" Click="Button_Click_1"/>
+        <StackPanel  Name="LoadData" Visibility="Hidden" HorizontalAlignment="Center" Grid.RowSpan="2">
 
         </StackPanel>
-        <DataGrid Name="dbData" Margin="319,10,0,10" Visibility="Hidden"/>
+        <DataGrid Name="dbData" Margin="319,10,0,10" Visibility="Hidden" Grid.RowSpan="2"/>
+        <Button x:Name="btnAddLinks" Content="addLinks" HorizontalAlignment="Left" Margin="280,385,0,0" VerticalAlignment="Top" Height="38" Width="87" Click="btnAddLinks_Click" Visibility="Hidden"/>
+        <StackPanel x:Name="linkSammlung" Margin="10,10,10,54" Visibility="Hidden" Grid.RowSpan="2">
+        </StackPanel>
     </Grid>
 </Window>
