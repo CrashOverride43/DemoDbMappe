@@ -16,7 +16,7 @@
         </Menu>
         <Button Content="Neu Anlegen" HorizontalAlignment="Left" Margin="10,386,0,0" VerticalAlignment="Top" Height="38" Width="85"/>
         <Button x:Name="btnLoad" Content="Laden" HorizontalAlignment="Left" Margin="100,385,0,0" VerticalAlignment="Top" Height="39" Width="85" Click="Button_Click"/>
-        <Button Content="Herrunterladen" HorizontalAlignment="Left" Margin="190,385,0,0" VerticalAlignment="Top" Height="39" Width="85" Click="Button_Click_1"/>
+        <Button Content="Herrunterladen" HorizontalAlignment="Left" Margin="190,385,0,0" VerticalAlignment="Top" Height="39" Width="85" />
         <StackPanel  Name="LoadData" Visibility="Hidden" HorizontalAlignment="Center" Grid.RowSpan="2">
 
         </StackPanel>

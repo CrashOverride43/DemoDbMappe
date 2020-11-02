@@ -27,7 +27,6 @@ namespace Demo_DB_UI
     /// </summary>
     public partial class MainWindow : Window
     {
-        List<string> values = new List<string>();
         System.IO.DirectoryInfo ParentDirectory = new System.IO.DirectoryInfo(@"C:\Users\FIAE\Downloads\DemoDbMappe\DemoDBDataAccessLayer\Data\");
         public MainWindow()
         {
@@ -61,11 +60,6 @@ namespace Demo_DB_UI
             LoadData.Children.Add(data);
         }
 
-        private void getDbConnection()
-        {
-
-        }
-
         private void LabelData_Click(object sender, EventArgs e)
         {
             string data = ((Label)sender).Content.ToString();
@@ -94,24 +88,28 @@ namespace Demo_DB_UI
         private void addLabelBorderOnOver(object sender, EventArgs e) { ((Label)sender).BorderBrush = Brushes.Black; }
         private void clearLabelBorder(object sender, EventArgs e) { ((Label)sender).BorderBrush = Brushes.Transparent; }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void btnAddLinks_Click(object sender, RoutedEventArgs e)
         {
             createLink win = new createLink();
-            
 
             if (win.ShowDialog() != false)
             {
-                values = win.getValues();
+                fillUrlInGrid(win.getValues());
+                fillLinksToDb(win.getValues());
             }
-            fillUrlInGrid();
         }
 
-        private void fillUrlInGrid()
+        private void fillLinksToDb(List<string> values)
+        {
+            LinkModel linkmodel = new LinkModel();
+            linkmodel.Linkname = values[0];
+            linkmodel.Linkurl = values[1];
+            LinkData data = new LinkData();
+            data.InsertLink(linkmodel.ToList());
+        }
+
+        private void fillUrlInGrid(List<string> values)
         {
             TextBlock linktxt = new TextBlock();
             Hyperlink hlink = new Hyperlink();
